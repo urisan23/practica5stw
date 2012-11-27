@@ -20,3 +20,24 @@
                 %a{:href => "/#{element.id}"} http://#{element.id.to_s(36)}
 - else
   %h4 No hay entradas en la base de datos.
+
+%center
+  %h3
+    %u Visitas por país
+  %h4
+    %table.table-bordered
+      %tr
+        %td
+          %h4 País
+        %td
+          %h4 Nº Visitas
+      - @paises.each do |p|
+        %tr
+          %td
+            %h4 #{p}
+          %td
+            %h4 #{Visit.where(:country => "#{p}").count}
+    
+    %br  
+    %u Total: 
+    #{@cont}

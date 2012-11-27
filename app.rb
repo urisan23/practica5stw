@@ -1,7 +1,33 @@
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'haml'
+require 'rest-client'
+require 'xmlsimple'
+
 
 set :database, 'sqlite3:///shortened_urls.db'
+set :database, 'sqlite3:///visits.db'
+
+before '/' do
+   set_country
+end
+
+
+def set_country
+   xml = RestClient.get "http://api.hostip.info/get_xml.php"
+   @ip = XmlSimple.xml_in(xml.to_s, { 'ForceArray' => false })['featureMember']['Hostip']
+   @visita = Visit.find_or_create_by_ip_and_country_and_countryAbrev(@ip['ip'], @ip['countryName'], @ip['countryAbbrev'])
+   @cont = Visit.count
+   select_paises, @paises = [], []
+   select_paises << Visit.select(:country).uniq
+   select_paises.flatten!
+   select_paises.each { |x| @paises << x.country}
+end
+
+
+class Visit < ActiveRecord::Base
+   validates_uniqueness_of :ip
+end  
 
 class ShortenedUrl < ActiveRecord::Base
    validates_uniqueness_of :url, :custom_url, :allow_blank => true
@@ -50,4 +76,3 @@ get '/:short' do |short_url|
    end
    redirect search_url.url
 end
-
