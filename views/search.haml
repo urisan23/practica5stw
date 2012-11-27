@@ -1,0 +1,17 @@
+.hero-unit
+  %left
+    %form{:action => "/search", :method => "POST", :name => "formulario"}
+
+
+      %h4
+      %input{:type => "radio",:name => "option",:id => "option",:value => "url"} Introduzca URL
+      %input{:type => "text",:name => "url",:id => "url"}
+      %h4
+      %input{:type => "radio",:name => "option",:id => "option",:value => "abr"} Introduzca Abreviatura:
+      %input{:type => "text",:name => "abr",:id => "abr"}
+
+      %br
+        %input{:type => "submit", :value => "Buscar", :class => "btn btn-primary"}
+
+
+

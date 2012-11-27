@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Acortador de URLs
+    %link{:rel => "stylesheet", :type => "text/css", :href => "css/bootstrap.css"}
+  %body
+    .container
+      .hero-unit
+        %center
+          %h2 Generador de URLs
+          %p
+            %a.btn.btn-primary.btn-large{:href => "/"}
+              Listado
+            %a.btn.btn-primary.btn-large{:href => "/new"}
+              Generar nueva URL
+            %a.btn.btn-primary.btn-large{:href => "/search"}
+              Buscar URL
+    =yield

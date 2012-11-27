@@ -1,0 +1,16 @@
+%center
+  %h3 
+    %u Resultado de la búsqueda:
+  %h4
+  - if result.custom_url != nil
+    %a{:href => "#{result.custom_url}"} http://#{result.custom_url} 
+    \=>
+    = result.url
+  - else
+    %a{:href => "#{result.id}"} http://#{result.id} 
+    \=>
+    = result.url
+  %br
+  %h3
+    %a{:href => "/search_abr", :class => "btn btn-primary"} Nueva Búsqueda
+    %a{:href => "/", :class => "btn btn-primary"} Regresar

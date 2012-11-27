@@ -1,0 +1,12 @@
+.hero-unit
+  %left
+    %form{:action => "/new", :method => "POST", :name => "formulario"}
+      %h4
+        Introduzca URL:
+        %input{:type => "text", :name => "url", :id => "url"}
+      %h4
+        Personalizar abreviatura (opcional)
+        %input{:onclick => "document.formulario.custom.disabled=!document.formulario.custom.disabled", :type => "checkbox", :value => "acepto"}
+        %input{:disabled => "", :type => "text", :name => "custom", :id => "custom", :value => ""}
+      %br
+        %input{:type => "submit", :value => "Crear", :class => "btn btn-primary"}

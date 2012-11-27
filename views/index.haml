@@ -1,0 +1,22 @@
+- if list.length > 0
+  .hero-unit
+    %center
+      %table.table.table-hover
+        %thead
+          %tr
+            %th #
+            %th URL original
+            %th URL acortada
+        %tbody
+        - list.each do |element|
+          %tr
+            %td #{element.id}
+            %td 
+              %a{:href=>"#{element.url}"} #{element.url}
+            %td 
+              - if !element.custom_url.nil? && element.custom_url.length > 0
+                %a{:href => "/#{element.id}"} http://#{element.custom_url}
+              - else
+                %a{:href => "/#{element.id}"} http://#{element.id.to_s(36)}
+- else
+  %h4 No hay entradas en la base de datos.
