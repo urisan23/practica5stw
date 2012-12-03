@@ -1,0 +1,17 @@
+- if listado.length > 0
+  %table.table.table-hover
+    %thead
+      %tr
+        %th #
+        %th URL original
+        %th URL acortada
+    %tbody
+    - listado.each do |element|
+      %tr
+        %td #{element.id}
+        %td 
+          %a{:href=>"#{element.url}"} #{element.url}
+        %td 
+          %a{:href=>"#{element.custom_url}"} #{element.custom_url}
+- else
+  %h4 No hay entradas en la base de datos.

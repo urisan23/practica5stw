@@ -1,0 +1,34 @@
+%br
+%br
+.hero-unit2
+  %h4 Estadísticas
+  %table.table.table-hover
+    %thead
+      %tr
+        %th País
+        %th # Visitas
+    %tbody
+    - @countries.each do |c|
+      %tr
+        %td 
+          - v = Visit.where(:country => "#{c}").first
+          %img.flag{:src => "http://www.crwflags.com/fotw/images/#{v.abbr[0].downcase}/#{v.abbr.downcase}.gif"}
+          #{" " + c}
+        %td 
+          #{Visit.where(:country => "#{c}").count}
+    
+  %br
+  %table.table
+    %thead
+    %tbody
+      %tr
+        %td
+          Total visitas: #{@counter}
+        %td
+          Su ip: 
+          =@ip["ip"]
+        %td 
+          País:
+          =@ip["countryName"]
+        %td
+          %img.flag{:src => "http://www.crwflags.com/fotw/images/#{@ip['countryAbbrev'][0].downcase}/#{@ip['countryAbbrev'].downcase}.gif"}

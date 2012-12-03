@@ -1,0 +1,20 @@
+%form.form-inline(action="/search" method="POST")
+  %label(for="url")
+  %input(type="text" name="url" id="url" placeholder="URL original o nombre")
+  %input.btn.btn-info(type="submit" value="Buscar")
+  
+- if @short_url.present?
+  %h4 Resultados
+  %table.table.table-hover
+    %thead
+      %tr
+        %th #
+        %th URL original
+        %th URL acortada
+    %tbody
+      %tr
+        %td #{@short_url.id}
+        %td 
+          %a{:href=>"#{@short_url.url}"} #{@short_url.url}
+        %td 
+          %a{:href=>"#{@short_url.custom_url}"} #{@short_url.custom_url}
